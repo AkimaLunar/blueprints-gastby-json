@@ -24,8 +24,9 @@ export const Image: FC<ImageProps> = ({
     className,
   );
 
-  const imageSrc = image?.localFile?.childrenImageSharp[0]?.gatsbyImageData;
-  const isSvg = image?.url?.endsWith('.svg');
+  const imageSrc = image?.localFile?.childImageSharp
+    ? image?.localFile?.childImageSharp?.gatsbyImageData
+    : undefined;  const isSvg = image?.url?.endsWith('.svg');
   const isGatsbyImage = Boolean(imageSrc && !isSvg);
 
   if (!isGatsbyImage && !isSvg && !src) {

@@ -13,18 +13,6 @@
 .cache
 public
 
-components/**/src/**/*.js
-components/**/src/**/*.js.map
-
-styles/**/src/**/*.js
-styles/**/src/**/*.js.map
-
-sections/**/src/**/*.js
-sections/**/src/**/*.js.map
-
-layouts/**/src/**/*.js
-layouts/**/src/**/*.js.map
-
 storybook-static
 node_modules
 .env

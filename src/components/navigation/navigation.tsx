@@ -1,4 +1,3 @@
-import type { NavigationItems } from '@microsoft/arbutus.main-navigation';
 import {
   MainNavigation,
   MainNavigationRenderer,
@@ -9,71 +8,33 @@ import type { FC } from 'react';
 import * as React from 'react';
 
 import { getNavigationContent } from './get-navigation-content';
+import type { MainNavigationCollectionsQuery } from './navigation.types';
+import { MAIN_NAVIGATION } from './config';
 
-export type ComponentPageData = {
-  _path: string;
-  _orderInNav?: number;
-  _includeInNav?: boolean;
-  title: string;
-};
-
-export type GuidelinesPageData = {
-  _path: string;
-  _orderInNav?: number;
-  _includeInNav?: boolean;
-  title: string;
-};
-
-export type NavigationQuery = {
-  allComponentsJson: {
-    nodes: ComponentPageData[];
-  };
-  allGuidanceJson: {
-    nodes: GuidelinesPageData[];
-  };
-};
+const MainNavigationCollectionsQuery = graphql`
+  query MainNavigationCollectionsQuery {
+    guidance: allPagesJson(filter: { _path: { glob: "/guidance/*" } }) {
+      nodes {
+        _path
+        title
+      }
+    }
+    components: allPagesJson(filter: { _path: { glob: "/components/*" } }) {
+      nodes {
+        _path
+        title
+      }
+    }
+  }
+`;
 
 export const Navigation: FC = () => {
   const { pathname } = useLocation();
 
-  const data = useStaticQuery<NavigationQuery>(graphql`
-    query MyQuery {
-      allGuidanceJson {
-        nodes {
-          _path
-          _orderInNav
-          _includeInNav
-          title
-        }
-      }
-      allComponentsJson {
-        nodes {
-          _path
-          _includeInNav
-          title
-        }
-      }
-    }
-  `);
-
-  const { components, guidance } = getNavigationContent(data);
-
-  const items: NavigationItems = {
-    gettingStarted: {
-      title: 'Getting Started',
-      id: '/getting-started',
-      linkProps: { to: '/getting-started' },
-      hasDivider: true,
-    },
-    guidance: {
-      title: 'Guidance',
-      items: guidance,
-    },
-    components: {
-      title: 'Components',
-      items: components,
-    },
-  };
+  const collectionsData = useStaticQuery<MainNavigationCollectionsQuery>(
+    MainNavigationCollectionsQuery,
+  );
+  const items = getNavigationContent({ collectionsData, config: MAIN_NAVIGATION });
 
   return (
     <MainNavigation>

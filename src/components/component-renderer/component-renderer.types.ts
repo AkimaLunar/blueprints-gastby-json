@@ -6,17 +6,23 @@ export type ComponentData =
   | ActionListTileComponentData
   | BookmarkTileComponentData
   | CodeSnippetComponentData
+  | ComponentPreviewComponentData
   | EmbedComponentData
   | GuidanceComponentData
   | HeadingComponentData
   | IllustrationTileComponentData
   | ImageComponentData
   | ImageTileComponentData
+  | IntroductionTextComponentData
   | LinkComponentData
   | MarkListComponentData
   | OrderedListComponentData
   | PersonTileComponentData
-  | RecommendationComponentData;
+  | PropTableComponentData
+  | RecommendationComponentData
+  | SandboxComponentData
+  | TableListComponentData
+  | TextComponentData;
 
 export type HeadingComponentData = {
   contentComponentId: 'blocks.heading';
@@ -51,7 +57,7 @@ export type ImageComponentData = {
   image: {
     alternativeText: string;
     url: string;
-    localFile: { publicURL: string; childrenImageSharp: { gatsbyImageData: IGatsbyImageData }[] };
+    localFile: { publicURL: string; childImageSharp: { gatsbyImageData: IGatsbyImageData } };
   };
   description: string;
 };
@@ -82,15 +88,27 @@ export type ActionListTileComponentData = {
 
 export type GuidanceComponentData = {
   contentComponentId: 'blocks.guidance';
+  image: {
+    alt: string;
+    src: { publicURL: string; childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+  };
   fileTitle: string;
-  fileType: 'figma' | 'storybook';
+  logoName?: 'figma' | 'storybook';
+  logoLabel?: string;
   url: string;
   heading?: string;
   description?: string;
-  image: {
-    alternativeText: string;
-    src: { publicURL: string; childrenImageSharp: { gatsbyImageData: IGatsbyImageData }[] };
-  };
+  listItems?: {
+    headline?: string;
+    text: string;
+  }[];
+};
+
+export type AnatomyComponentData = {
+  contentComponentId: 'blocks.anatomy';
+  embedUrl: string;
+  heading?: string;
+  description?: string;
   listItems?: {
     headline?: string;
     text: string;
@@ -186,9 +204,15 @@ export type PropTableComponentData = {
 
 export type TextComponentData = {
   contentComponentId: 'blocks.text';
-  childMarkdownRemark: {
-    html?: string;
-    rawMarkdownBody?: string;
+  markdown: {
+    raw?: string;
+  };
+};
+
+export type IntroductionTextComponentData = {
+  contentComponentId: 'blocks.introduction-text';
+  markdown: {
+    raw?: string;
   };
 };
 
@@ -196,11 +220,26 @@ export type ComponentPreviewComponentData = {
   contentComponentId: 'blocks.component-preview';
   exampleFile: string;
   withMenu: boolean;
-  wrapper: 'display' | 'minimal' | 'none';
+};
+
+export type TableListComponentData = {
+  contentComponentId: 'lists.table-list';
+  data: string[][];
+  headers?: {
+    text: string;
+  }[];
+  variant?: 'default' | 'alternating' | 'borderless';
+  columnSizing?: (number | string)[];
 };
 
 export type ComponentRendererProps = {
   content?: ComponentData[] | [];
+};
+
+export type SandboxComponentData = {
+  contentComponentId: 'blocks.sandbox';
+  codeFile: string;
+  dependencies?: ([string, string] | string)[];
 };
 
 export type ComponentProps = {

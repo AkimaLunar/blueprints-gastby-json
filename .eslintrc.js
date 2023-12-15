@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['@microsoft/eslint-config-arbutus', 'plugin:storybook/recommended'],
+  extends: ['@microsoft/eslint-config-arbutus'],
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],

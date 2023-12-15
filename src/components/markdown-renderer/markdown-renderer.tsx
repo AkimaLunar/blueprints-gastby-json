@@ -7,15 +7,11 @@ import type { FC } from 'react';
 import * as React from 'react';
 import Markdown from 'react-markdown';
 
-import { Image } from '../../image';
-import type { TextComponentData } from '../component-renderer.types';
+import { MarkdownRendererProps } from './markdown-renderer.types';
+import { Image } from '../image';
 
-type TextProps = TextComponentData;
-
-export const TextComponent: FC<TextProps> = (data) => {
-  const rawMarkdown = data?.markdown?.raw;
-
-  if (!rawMarkdown) {
+export const MarkdownRenderer: FC<MarkdownRendererProps> = ({ markdown }) => {
+  if (!markdown) {
     return null;
   }
 
@@ -87,7 +83,7 @@ export const TextComponent: FC<TextProps> = (data) => {
         },
       }}
     >
-      {rawMarkdown}
+      {markdown}
     </Markdown>
   );
 };

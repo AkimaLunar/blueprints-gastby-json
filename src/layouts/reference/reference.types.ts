@@ -1,4 +1,5 @@
 import type { ComponentData } from '../../components/component-renderer';
+import { QuickResourceProps } from '../../components/quick-resource';
 
 type Contributor = {
   firstName: string;
@@ -14,7 +15,7 @@ type Contributor = {
 export type ReferenceLayoutProps = {
   title: string;
   definition: string;
-  packageName: string;
+  quickResources: QuickResourceProps['data'][];
   owners: Contributor[];
   tabs:
     | {
