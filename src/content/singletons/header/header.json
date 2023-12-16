@@ -8,12 +8,12 @@
       "isExternal": false
     },
     {
-      "to": "/guidance/page-1/",
+      "to": "/guidance/guidance-1/",
       "text": "Guidelines",
       "isExternal": false
     },
     {
-      "to": "/components/reference-page-1/",
+      "to": "/components/reference-1/",
       "text": "Components",
       "isExternal": false
     }
