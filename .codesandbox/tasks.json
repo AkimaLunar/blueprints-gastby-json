@@ -11,28 +11,27 @@
   "tasks": {
     "build": {
       "name": "build",
-      "command": "npm run build",
-      "runAtStart": false
+      "command": "npm run build"
     },
     "clean": {
       "name": "clean",
-      "command": "npm run clean",
-      "runAtStart": false
+      "command": "npm run clean"
     },
     "develop": {
       "name": "develop",
-      "command": "npm run develop",
-      "runAtStart": false
+      "command": "npm run develop"
     },
     "lint": {
       "name": "lint",
-      "command": "npm run lint",
-      "runAtStart": false
+      "command": "npm run lint"
     },
     "start": {
       "name": "start",
       "command": "npm run start",
-      "runAtStart": true
+      "runAtStart": true,
+      "preview": {
+        "port": 8000
+      }
     }
   }
 }
