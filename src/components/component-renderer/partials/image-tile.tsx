@@ -1,4 +1,3 @@
-import { makeStyles } from '@griffel/react';
 import { ImageTile } from '@microsoft/arbutus.image-tile';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import type { FC } from 'react';
@@ -6,14 +5,7 @@ import * as React from 'react';
 
 import { makeNavigate } from '../../../utilities';
 import type { ImageTileComponentData } from '../component-renderer.types';
-
-const useStyles = makeStyles({
-  thumbnail: {
-    height: '180px',
-    width: '100%',
-    objectFit: 'cover',
-  },
-});
+import { useImageTileComponentStyles } from './image-tile.styles';
 
 type ImageTileComponentProps = ImageTileComponentData;
 
@@ -34,7 +26,7 @@ export const ImageTileComponent: FC<ImageTileComponentProps> = ({
   description,
   title,
 }) => {
-  const classes = useStyles();
+  const classes = useImageTileComponentStyles();
 
   const onClick = makeNavigate({ isExternal, to });
   const isSvg = image?.url?.endsWith('.svg');

@@ -6,14 +6,9 @@ import type { FC } from 'react';
 import * as React from 'react';
 
 import type { LinkComponentData } from '../component-renderer.types';
+import { useLinkStyles } from './link.styles';
 
 type LinkComponentProps = LinkComponentData;
-
-const useLinkStyles = makeStyles({
-  root: {
-    textDecorationLine: 'none',
-  },
-});
 
 export const LinkComponent: FC<LinkComponentProps> = ({ to, isExternal, text }) => {
   const classes = useLinkStyles();

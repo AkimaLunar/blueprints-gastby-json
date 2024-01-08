@@ -1,19 +1,11 @@
-import { makeStyles } from '@griffel/react';
 import { BookmarkTile } from '@microsoft/arbutus.bookmark-tile';
 import type { FC } from 'react';
 import * as React from 'react';
 
 import { makeNavigate } from '../../../utilities';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: '316px',
-    display: 'inline-flex',
-    alignItems: 'unset',
-  },
-});
-
 import type { BookmarkTileComponentData } from '../component-renderer.types';
+import { useBookmarkTileComponentStyles } from '../bookmark-tile.styles';
 
 type BookmarkTileComponentProps = BookmarkTileComponentData;
 
@@ -24,7 +16,7 @@ export const BookmarkTileComponent: FC<BookmarkTileComponentProps> = ({
   to,
   icon,
 }) => {
-  const classes = useStyles();
+  const classes = useBookmarkTileComponentStyles();
 
   const onClick = makeNavigate({ isExternal, to });
 

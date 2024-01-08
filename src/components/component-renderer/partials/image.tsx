@@ -6,23 +6,9 @@ import * as React from 'react';
 
 import { Image } from '../../image';
 import type { ImageComponentData } from '../component-renderer.types';
+import { useImageComponentStyles } from './image.styles';
 
 type ImageComponentProps = ImageComponentData;
-
-const useImageComponentStyles = makeStyles({
-  figure: {
-    marginTop: 0,
-    marginBottom: 0,
-    marginLeft: 0,
-    marginRight: 0,
-    '& img': {
-      ...shorthands.borderRadius(tokens.borderRadiusXLarge),
-    },
-    '& figcaption': {
-      marginTop: tokens.spacingVerticalL,
-    },
-  },
-});
 
 export const ImageComponent: FC<ImageComponentProps> = ({ image, description }) => {
   const classes = useImageComponentStyles();

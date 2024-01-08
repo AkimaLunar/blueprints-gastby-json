@@ -10,7 +10,7 @@ import type {
 } from './component-renderer.types';
 import { formatData } from './format-data';
 import { components } from './partials';
-import { GRID_SETTINGS, useGridStyles } from './use-grid-styles';
+import { GRID_SETTINGS, useGridStyles } from './use-grid.styles';
 
 const getComponent = (type: ComponentType) => components[type] ?? null;
 

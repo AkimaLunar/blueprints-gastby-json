@@ -1,7 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-argument */
 import { sentenceCase } from 'change-case';
-import type { GatsbyNode } from 'gatsby';
+import type { GatsbyNode, CreateWebpackConfigArgs } from 'gatsby';
 import path from 'path';
+import { GriffelCSSExtractionPlugin } from '@griffel/webpack-extraction-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 type Result = {
   allFile: {
@@ -12,11 +13,7 @@ type Result = {
   };
 };
 
-export const createPages: GatsbyNode['createPages'] = async ({
-  graphql,
-  actions,
-  reporter,
-}) => {
+export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
   const PreviewPage = path.resolve('./src/templates/preview-page.tsx');
@@ -54,9 +51,41 @@ export const createPages: GatsbyNode['createPages'] = async ({
           title: title,
           fileName: fileName,
           examplePath: relativePath,
-          dependencies: [],
-        },
+          dependencies: []
+        }
       });
     });
   }
+};
+
+export const onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }: CreateWebpackConfigArgs) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        // {
+        //   test: /\.(js|ts|tsx)$/,
+        //   use: {
+        //     loader: GriffelCSSExtractionPlugin.loader
+        //   }
+        // },
+        {
+          test: /\.styles.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: '@griffel/webpack-loader',
+            options: {
+              babelOptions: {
+                presets: ['@babel/preset-typescript']
+              }
+            }
+          }
+        },
+        // {
+        //   test: /\.css$/,
+        //   use: [MiniCssExtractPlugin.loader, 'css-loader']
+        // }
+      ]
+    },
+    // plugins: [new MiniCssExtractPlugin(), new GriffelCSSExtractionPlugin()]
+  });
 };
