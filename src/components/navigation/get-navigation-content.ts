@@ -32,8 +32,6 @@ const generateCollectionItems = (
 
   const { nodes } = data[collection.collectionId];
 
-  console.log(collection.collectionId, 'data', data)
-
   const nodesSortedAlphabetically = nodes.sort((a: { title: string }, b: { title: string }) =>
     sortAlphabetically(a.title, b.title)
   );

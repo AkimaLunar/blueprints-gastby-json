@@ -1,12 +1,13 @@
-import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 
-import type { components } from './partials';
+import type { components } from "./partials";
 
 export type ComponentData =
   | ActionListTileComponentData
   | BookmarkTileComponentData
   | CodeSnippetComponentData
   | ComponentPreviewComponentData
+  | DividerComponentData
   | EmbedComponentData
   | GuidanceComponentData
   | HeadingComponentData
@@ -25,23 +26,23 @@ export type ComponentData =
   | TextComponentData;
 
 export type HeadingComponentData = {
-  contentComponentId: 'blocks.heading';
+  contentComponentId: "blocks.heading";
   title: string;
   leading?: string;
   withCopyLink?: boolean;
   withDivider?: boolean;
-  size: 'headline' | 'jumbo' | 'title' | 'subtitle' | 'caption';
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  size: "headline" | "jumbo" | "title" | "subtitle" | "caption";
+  as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 };
 
 export type CodeSnippetComponentData = {
-  contentComponentId: 'blocks.heading';
+  contentComponentId: "blocks.heading";
   code_: string;
-  language: 'typescript' | 'javascript';
+  language: "typescript" | "javascript";
 };
 
 export type BookmarkTileComponentData = {
-  contentComponentId: 'tiles.bookmark-tile';
+  contentComponentId: "tiles.bookmark-tile";
   title: string;
   description: string;
   isExternal: boolean;
@@ -53,17 +54,18 @@ export type BookmarkTileComponentData = {
 };
 
 export type ImageComponentData = {
-  contentComponentId: 'blocks.image';
-  image: {
-    alternativeText: string;
-    url: string;
-    localFile: { publicURL: string; childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+  contentComponentId: "blocks.image";
+  src: {
+    publicURL: string;
+    childImageSharp: { gatsbyImageData: IGatsbyImageData };
   };
-  description: string;
+  alt?: string;
+  title?: string;
+  description?: string;
 };
 
 export type MarkListComponentData = {
-  contentComponentId: 'lists.mark-list';
+  contentComponentId: "lists.mark-list";
   listItems: {
     headline?: string;
     text: string;
@@ -71,14 +73,14 @@ export type MarkListComponentData = {
 };
 
 export type ActionListTileComponentData = {
-  contentComponentId: 'tiles.action-list-tile';
+  contentComponentId: "tiles.action-list-tile";
   title?: string;
   icon?: {
     alternativeText: string;
     src: string;
   };
   listItems: {
-    iconType: 'link' | 'download' | 'open';
+    iconType: "link" | "download" | "open";
     description: string;
     label: string;
     to: string;
@@ -87,13 +89,16 @@ export type ActionListTileComponentData = {
 };
 
 export type GuidanceComponentData = {
-  contentComponentId: 'blocks.guidance';
+  contentComponentId: "blocks.guidance";
   image: {
     alt: string;
-    src: { publicURL: string; childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+    src: {
+      publicURL: string;
+      childImageSharp: { gatsbyImageData: IGatsbyImageData };
+    };
   };
   fileTitle: string;
-  logoName?: 'figma' | 'storybook';
+  logoName?: "figma" | "storybook";
   logoLabel?: string;
   url: string;
   heading?: string;
@@ -105,7 +110,7 @@ export type GuidanceComponentData = {
 };
 
 export type AnatomyComponentData = {
-  contentComponentId: 'blocks.anatomy';
+  contentComponentId: "blocks.anatomy";
   embedUrl: string;
   heading?: string;
   description?: string;
@@ -116,23 +121,23 @@ export type AnatomyComponentData = {
 };
 
 export type EmbedComponentData = {
-  contentComponentId: 'blocks.embed';
+  contentComponentId: "blocks.embed";
   url: string;
-  type: 'figma' | 'storybook';
+  type: "figma" | "storybook";
   title: string;
-  size: 'small' | 'medium' | 'large';
+  size: "small" | "medium" | "large";
 };
 
 export type LinkComponentData = {
-  contentComponentId: 'atoms.link';
+  contentComponentId: "atoms.link";
   to: string;
   text: string;
   isExternal: boolean;
 };
 
 export type OrderedListComponentData = {
-  contentComponentId: 'lists.ordered-list';
-  variant: 'primary' | 'secondary' | 'accent';
+  contentComponentId: "lists.ordered-list";
+  variant: "primary" | "secondary" | "accent";
   listItems: {
     headline?: string;
     text: string;
@@ -140,7 +145,7 @@ export type OrderedListComponentData = {
 };
 
 export type IllustrationTileComponentData = {
-  contentComponentId: 'tiles.illustration-tile';
+  contentComponentId: "tiles.illustration-tile";
   title: string;
   to: string;
   isExternal: boolean;
@@ -152,7 +157,7 @@ export type IllustrationTileComponentData = {
 };
 
 export type ImageTileComponentData = {
-  contentComponentId: 'tiles.image-tile';
+  contentComponentId: "tiles.image-tile";
   to: string;
   isExternal: boolean;
   title?: string;
@@ -160,12 +165,15 @@ export type ImageTileComponentData = {
   image: {
     url?: string;
     alternativeText: string;
-    localFile: { publicURL: string; childrenImageSharp: { gatsbyImageData: IGatsbyImageData }[] };
+    localFile: {
+      publicURL: string;
+      childrenImageSharp: { gatsbyImageData: IGatsbyImageData }[];
+    };
   };
 };
 
 export type PersonTileComponentData = {
-  contentComponentId: 'tiles.person-tile';
+  contentComponentId: "tiles.person-tile";
   role: string;
   lastName: string;
   isExternal: boolean;
@@ -175,16 +183,16 @@ export type PersonTileComponentData = {
     alternativeText: string;
     url?: string;
   };
-  icon: {
+  icon?: {
     alternativeText: string;
     url: string;
   };
 };
 
 export type RecommendationComponentData = {
-  contentComponentId: 'tiles.recommendation';
+  contentComponentId: "tiles.recommendation";
   title: string;
-  recommendation: 'positive' | 'negative';
+  recommendation: "positive" | "negative";
   description?: string;
   recommendationsList?: {
     text: string;
@@ -192,43 +200,46 @@ export type RecommendationComponentData = {
   }[];
   image?: {
     alternativeText: string;
-    localFile: { publicURL: string; childrenImageSharp: { gatsbyImageData: IGatsbyImageData }[] };
+    localFile: {
+      publicURL: string;
+      childrenImageSharp: { gatsbyImageData: IGatsbyImageData }[];
+    };
   };
 };
 
 export type PropTableComponentData = {
-  contentComponentId: 'blocks.prop-table';
+  contentComponentId: "blocks.prop-table";
   componentName: string;
   componentPropType: string;
 };
 
 export type TextComponentData = {
-  contentComponentId: 'blocks.text';
+  contentComponentId: "blocks.text";
   markdown: {
     raw?: string;
   };
 };
 
 export type IntroductionTextComponentData = {
-  contentComponentId: 'blocks.introduction-text';
+  contentComponentId: "blocks.introduction-text";
   markdown: {
     raw?: string;
   };
 };
 
 export type ComponentPreviewComponentData = {
-  contentComponentId: 'blocks.component-preview';
+  contentComponentId: "blocks.component-preview";
   exampleFile: string;
   withMenu: boolean;
 };
 
 export type TableListComponentData = {
-  contentComponentId: 'lists.table-list';
+  contentComponentId: "lists.table-list";
   data: string[][];
   headers?: {
     text: string;
   }[];
-  variant?: 'default' | 'alternating' | 'borderless';
+  variant?: "default" | "alternating" | "borderless";
   columnSizing?: (number | string)[];
 };
 
@@ -237,9 +248,13 @@ export type ComponentRendererProps = {
 };
 
 export type SandboxComponentData = {
-  contentComponentId: 'blocks.sandbox';
+  contentComponentId: "blocks.sandbox";
   codeFile: string;
   dependencies?: ([string, string] | string)[];
+};
+
+export type DividerComponentData = {
+  contentComponentId: "blocks.divider";
 };
 
 export type ComponentProps = {

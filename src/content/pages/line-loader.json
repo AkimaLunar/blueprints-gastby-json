@@ -1,0 +1,161 @@
+{
+  "_layout": "basic",
+  "_path": "/line-loader",
+  "title": "Line Loader",
+  "leading": "The who, what, where, when, why, and how on all things relating to the Line Loader.",
+  "content": [
+    {
+      "contentComponentId": "blocks.image",
+      "src": "../../assets/demo-image-1.png",
+      "alt": "Alternative text"
+    },
+    {
+      "contentComponentId": "blocks.divider"
+    },
+    {
+      "contentComponentId": "blocks.heading",
+      "title": "Who owns the line loader",
+      "leading": "The Line Loader is owned by the framework team. This allows us to turn the Line Loader on and off predictably based on what we built into the system. The Line Loader utilizes the V9 ProgressBar component from Fluent 2, with the theme being customized for Teams. To find out more about the Fluent 2 ProgressBar component, click the link below, or ask the contacts below if you have any questions.",
+      "withCopyLink": true,
+      "size": "headline",
+      "as": "h2"
+    },
+    {
+      "contentComponentId": "tiles.person-tile",
+      "role": "Designer 2",
+      "lastName": "McLean",
+      "isExternal": "false",
+      "firstName": "Emily",
+      "to": "#"
+    },
+    {
+      "contentComponentId": "tiles.person-tile",
+      "role": "Principal Design Manager",
+      "lastName": "Baker",
+      "isExternal": "false",
+      "firstName": "Casey",
+      "to": "#"
+    },
+    {
+      "contentComponentId": "tiles.person-tile",
+      "firstName": "Cindy",
+      "lastName": "Zhao",
+      "role": "Program Manager",
+      "isExternal": "false",
+      "to": "#"
+    },
+    {
+      "contentComponentId": "tiles.person-tile",
+      "role": "Principal PM Manager",
+      "lastName": "Hsu",
+      "isExternal": "false",
+      "firstName": "Diana",
+      "to": "#"
+    },
+    {
+      "contentComponentId": "blocks.divider"
+    },
+    {
+      "contentComponentId": "blocks.heading",
+      "title": "What is a line loader?",
+      "leading": "Line Loaders are similar to ProgressBars in that they load horizontally across a bar, however, the Line Loaders has no additional text to indicate the time remaining. There are 2 types of Line Loaders:",
+      "withCopyLink": true,
+      "size": "headline",
+      "as": "h2"
+    },
+    {
+      "contentComponentId": "blocks.image",
+      "src": "../../assets/demo-image-2.png",
+      "alt": "A demo of a determinate line loader",
+      "title": "Determinate line loader",
+      "description": "Similar to a ProgressBar animation, the determinate Line Loader loads from left to right in a solid color until the loading has completed."
+    },
+    {
+      "contentComponentId": "blocks.image",
+      "src": "../../assets/demo-image-3.png",
+      "alt": "A demo of a indeterminate line loader",
+      "title": "Indeterminate line loader",
+      "description": "The default indeterminate Line Loader pulses from left to right and is darker on the left and fades out to a lighter color on the right."
+    },
+    {
+      "contentComponentId": "blocks.divider"
+    },
+    {
+      "contentComponentId": "blocks.heading",
+      "title": "Where does it appear?",
+      "leading": "Line Loader timing depends on how long a view actually takes to occur. There is a 2 second barrier in place for Line Loader to be initiated. This means that there is a spectrum of users that will and won’t see the Line Loader depending on how quickly they can load based on their machine and everything else.",
+      "withCopyLink": true,
+      "size": "headline",
+      "as": "h2"
+    },
+    {
+      "contentComponentId": "blocks.image",
+      "src": "../../assets/demo-image-1.png",
+      "alt": "Alternative text"
+    },
+    {
+      "contentComponentId": "blocks.divider"
+    },
+    {
+      "contentComponentId": "blocks.heading",
+      "title": "When does a line loader appear?",
+      "leading": "Line Loader timing depends on how long a view actually takes to occur. There is a 2 second barrier in place for Line Loader to be initiated. This means that there is a spectrum of users that will and won’t see the Line Loader depending on how quickly they can load based on their machine and everything else.",
+      "withCopyLink": true,
+      "size": "headline",
+      "as": "h2"
+    },
+    {
+      "contentComponentId": "blocks.heading",
+      "title": "Load time: 2 seconds and below",
+      "withCopyLink": false,
+      "size": "caption",
+      "as": "h3"
+    },
+    {
+      "contentComponentId": "blocks.image",
+      "src": "../../assets/demo-image-1.png",
+      "alt": "Alternative text"
+    },
+    {
+      "contentComponentId": "blocks.heading",
+      "title": "Load time: 2 seconds and above",
+      "withCopyLink": false,
+      "size": "caption",
+      "as": "h3"
+    },
+    {
+      "contentComponentId": "blocks.image",
+      "src": "../../assets/demo-image-1.png",
+      "alt": "Alternative text"
+    },
+    {
+      "contentComponentId": "blocks.divider"
+    },
+    {
+      "contentComponentId": "blocks.heading",
+      "title": "Why are line loaders important?",
+      "leading": "The Line Loader helps to visually indicate that there is content being loaded in a large canvas slot area. As with most loading components, it is not interactive, and is only meant to be visual. It is important to communicate and assure progress is occurring. See more about accessibility below.",
+      "withCopyLink": true,
+      "size": "headline",
+      "as": "h2"
+    },
+    {
+      "contentComponentId": "tiles.bookmark-tile",
+      "title": "Accessibility",
+      "description": "Located in the Loading Framework: General Figma file.",
+      "isExternal": false,
+      "to": "#"
+    },
+    {
+      "contentComponentId": "blocks.divider"
+    },
+    {
+      "contentComponentId": "blocks.heading",
+      "title": "How does it appear?",
+      "leading": "When receiving the signal that something has been rendered, then framework turns the Line Loader on and off automatically based upon the transition that occurs. This way ensures consistency, versus giving the control into the hands of the feature team and also allows us to turn the Line Loader on and off predictably based on what we built into the system.",
+      "withCopyLink": true,
+      "size": "headline",
+      "as": "h2"
+    }
+  ]
+}

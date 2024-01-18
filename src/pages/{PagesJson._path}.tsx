@@ -1,16 +1,16 @@
-import { graphql, type HeadFC, type PageProps } from 'gatsby';
-import type { FC } from 'react';
-import * as React from 'react';
+import { graphql, type HeadFC, type PageProps } from "gatsby";
+import type { FC } from "react";
+import * as React from "react";
 
-import type { LayoutKey } from '../layouts/layouts.types';
+import type { LayoutKey } from "../layouts/layouts.types";
 import {
   WorkInProgressLayout,
   WorkInProgressLayoutProps,
-} from '../layouts/work-in-progress';
-import { BasicLayout, BasicLayoutProps } from '../layouts/basic';
-import { ReferenceLayout, ReferenceLayoutProps } from '../layouts/reference';
-import type { ComponentData } from '../components/component-renderer';
-import { formatDataToProps } from '../utilities/layout';
+} from "../layouts/work-in-progress";
+import { BasicLayout, BasicLayoutProps } from "../layouts/basic";
+import { ReferenceLayout, ReferenceLayoutProps } from "../layouts/reference";
+import type { ComponentData } from "../components/component-renderer";
+import { formatDataToProps } from "../utilities/layout";
 
 type JsonPageContext = {
   id: string;
@@ -28,7 +28,7 @@ export type JsonPageData = {
       | {
           label: string;
           url: string;
-          type: 'figma' | 'storybook';
+          type: "figma" | "storybook";
         }
       | {
           copyText: string;
@@ -57,19 +57,19 @@ export type JsonPageData = {
 const JsonPage: FC<PageProps<JsonPageData, JsonPageContext>> = ({ data }) => {
   const { key, props } = formatDataToProps(data);
 
-  if (key === 'basic') {
+  if (key === "basic") {
     return <BasicLayout {...(props as BasicLayoutProps)} />;
   }
 
-  if (key === 'reference') {
+  if (key === "reference") {
     return <ReferenceLayout {...(props as ReferenceLayoutProps)} />;
   }
 
-  if (key === 'work-in-progress') {
+  if (key === "work-in-progress") {
     return <WorkInProgressLayout {...(props as WorkInProgressLayoutProps)} />;
   }
 
-  return <WorkInProgressLayout title={data.pagesJson.title ?? 'Page title'} />;
+  return <WorkInProgressLayout title={data.pagesJson.title ?? "Page title"} />;
 };
 
 export const Head: HeadFC<JsonPageData> = ({ data }) => (
@@ -121,6 +121,30 @@ export const query = graphql`
     withDivider
     size
     as
+  }
+  fragment ImageComponent on PagesJsonContent {
+    contentComponentId
+    title
+    description
+    alt
+    src {
+      publicURL
+      childImageSharp {
+        gatsbyImageData(
+          height: 620
+          placeholder: BLURRED
+          formats: [AUTO, WEBP, AVIF]
+          quality: 100
+        )
+      }
+    }
+  }
+  fragment PersonTileComponent on PagesJsonContent {
+    contentComponentId
+    firstName
+    lastName
+    role
+    to
   }
   fragment TextComponent on PagesJsonContent {
     contentComponentId
@@ -187,6 +211,9 @@ export const query = graphql`
     data
     columnSizing
   }
+  fragment DividerComponent on PagesJsonContent {
+    contentComponentId
+  }
   query JsonPageQuery($_path: String!) {
     pagesJson(_path: { eq: $_path }) {
       ...Metadata
@@ -203,17 +230,13 @@ export const query = graphql`
         ...HeadingComponent
         ...IntroductionTextComponent
         ...TextComponent
+        ...PersonTileComponent
+        ...ImageComponent
+        ...DividerComponent
       }
       tabs {
         tab
         content {
-          contentComponentId
-          title
-          leading
-          withCopyLink
-          withDivider
-          size
-          as
           ...HeadingComponentTabs
           ...AnatomyComponentTabs
           ...ComponentPreviewComponentTabs

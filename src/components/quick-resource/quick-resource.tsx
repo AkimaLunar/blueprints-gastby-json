@@ -1,24 +1,24 @@
-import * as React from 'react';
-import type { FC } from 'react';
-import { ResourceChip } from '@microsoft/arbutus.resource-chip';
-import { useCopyToClipboard } from '@microsoft/arbutus.use-copy-to-clipboard';
+import * as React from "react";
+import type { FC } from "react";
+import { ResourceChip } from "@microsoft/arbutus.resource-chip";
+import { useCopyToClipboard } from "@microsoft/arbutus.use-copy-to-clipboard";
 
 import type {
   QuickResourceCopyTextProps,
   QuickResourceLinkProps,
   QuickResourceProps,
-} from './quick-resource.types';
+} from "./quick-resource.types";
 
 export const isCopyResource = (
-  resource: QuickResourceProps['data'],
+  resource: QuickResourceProps["data"],
 ): resource is { copyText: string } => {
-  return 'copyText' in resource;
+  return "copyText" in resource;
 };
 
 export const isLinkResource = (
-  resource: QuickResourceProps['data'],
-): resource is { label: string; url: string; type: 'figma' | 'storybook' } => {
-  return 'label' in resource && 'url' in resource && 'type' in resource;
+  resource: QuickResourceProps["data"],
+): resource is { label: string; url: string; type: "figma" | "storybook" } => {
+  return "label" in resource && "url" in resource && "type" in resource;
 };
 
 const QuickResourceCopyText: FC<QuickResourceCopyTextProps> = ({
@@ -27,12 +27,11 @@ const QuickResourceCopyText: FC<QuickResourceCopyTextProps> = ({
 }) => {
   const { copy: copyPackageName, status } = useCopyToClipboard();
 
-  const handleCopyPackageName = () => copyPackageName(copyText ?? '');
-  console.log('QuickResourceCopyText', copyText);
+  const handleCopyPackageName = () => copyPackageName(copyText ?? "");
   return (
     <ResourceChip
       text={copyText}
-      actionIconName={status === 'ready' ? 'copy' : 'check'}
+      actionIconName={status === "ready" ? "copy" : "check"}
       onClick={handleCopyPackageName}
       className={className}
     />
@@ -45,7 +44,7 @@ const QuickResourceLink: FC<QuickResourceLinkProps> = ({
   type,
   className,
 }) => {
-  const handleClick = () => window.open(url, '_blank');
+  const handleClick = () => window.open(url, "_blank");
 
   return (
     <ResourceChip
@@ -60,10 +59,10 @@ const QuickResourceLink: FC<QuickResourceLinkProps> = ({
 };
 
 export const QuickResource: FC<QuickResourceProps> = ({ data, className }) => {
-  isCopyResource(data) && console.log('isCopyResource', data);
-  isLinkResource(data) && console.log('isLinkResource', data);
   if (isCopyResource(data)) {
-    return <QuickResourceCopyText copyText={data.copyText} className={className} />;
+    return (
+      <QuickResourceCopyText copyText={data.copyText} className={className} />
+    );
   }
 
   if (isLinkResource(data)) {
